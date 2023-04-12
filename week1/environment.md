@@ -140,6 +140,7 @@ npx tsc --init
 2. `.eslintrc.js` 파일을 적절히 수정
 
    - jest 사용한다면 미리 `env`에 `jest: true` 넣어주면 좋음
+   - 상단에 매번 React import하기 싫다면 extends에 `plugin:react/jsx-runtime` 추가
 
 3. `.eslintignore` 파일 작성  
    eslint로 문법 검사하지 않을 파일 세팅
