@@ -168,7 +168,8 @@ let output = identity<string>("myString");
 
 공통 타입 변환을 용이하게 하기 위해 TS가 전역으로 제공하는 방식 [(참고)](https://www.typescriptlang.org/docs/handbook/utility-types.html)
 
-- keyof
+- **keyof**
+
   T의 모든 프로퍼티의 키값을 union형태로 반환
 
   ```tsx
@@ -183,7 +184,7 @@ let output = identity<string>("myString");
   const uk: UserKey = "name"; // error 안나고 통과
   ```
 
-- Partial<type>
+- **Partial<type>**
 
   해당 타입의 모든 프로퍼티를 optional로 설정(있어도 되고 없어도 됨)한 새로운 타입 반환
 
@@ -201,7 +202,7 @@ let output = identity<string>("myString");
   };
   ```
 
-- Required<type>
+- **Required<type>**
 
   모든 프로퍼티를 필수로 지정 (`?` 연산자가 있어도)한 새로운 타입 반환
 
