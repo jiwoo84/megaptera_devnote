@@ -78,6 +78,8 @@ code .
 npm init -y
 ```
 
+- `-y`는 yes의 줄임말로 묻고 따지지 않고 파일을 만들어줌
+
 ### `.gitignore` 파일 생성
 
 ```json
