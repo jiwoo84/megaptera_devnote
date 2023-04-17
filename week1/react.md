@@ -7,7 +7,9 @@
   - [예전 문서의 설명](https://ko.reactjs.org/docs/thinking-in-react.html) : 한국어로 써있어서 읽기 쉬움, 살짝 참고만 하고 코드 참고 x
   - [React 코어 개발자가 쓴 React에 대한 이해를 돕는 글](https://overreacted.io/ko/react-as-a-ui-runtime/) : 필독!
 
-## 📌 렌더링
+## 렌더링
+
+---
 
 ```tsx
 function Greeting() {
@@ -35,9 +37,8 @@ main();
 
 - [updating-a-root-component](https://beta.reactjs.org/reference/react-dom/client/createRoot#updating-a-root-component)
 
-### 참고 자료
-
-- [createRoot](https://beta.reactjs.org/reference/react-dom/client/createRoot)
+- 참고 자료
+  - [createRoot](https://beta.reactjs.org/reference/react-dom/client/createRoot)
   - (한국어) [예전 문서](https://ko.reactjs.org/docs/react-dom-client.html#createroot)
 
 ### 리렌더링
@@ -46,9 +47,11 @@ main();
 - [왜 리액트에서 리렌더링이 발생하는가.](https://medium.com/@yujso66/%EB%B2%88%EC%97%AD-%EC%99%9C-%EB%A6%AC%EC%95%A1%ED%8A%B8%EC%97%90%EC%84%9C-%EB%A6%AC%EB%A0%8C%EB%8D%94%EB%A7%81%EC%9D%B4-%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94%EA%B0%80-74dd239b0063)
 - [React 렌더링 동작에 대한 (거의) 완벽한 가이드](https://velog.io/@superlipbalm/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior)
 
-### 보너스
+## React는 라이브러리 or 프레임워크?
 
-[면접 때 종종 나오는 (쓸모 없는) 질문인 “React는 프레임워크인가요, 라이브러리인가요?”에 대한 React 개발자의 답변](https://twitter.com/trueadm/status/1194567962784653312)
+---
+
+[React 개발자의 답변](https://twitter.com/trueadm/status/1194567962784653312)
 
 IoC [(IoC: Inversion of Control 제어의 역전)](https://martinfowler.com/bliki/InversionOfControl.html)는 Framework의 주요한 특징  
 React는 IoC를 통해 상태와 업데이트가 얽힌 복잡한 상황을 간단히 선언형 UI로 구성함  

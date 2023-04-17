@@ -1,6 +1,8 @@
 # 1. 개발 환경 세팅
 
-## 📌 fnm 설치
+## fnm 설치
+
+---
 
 ```bash
 # mac, linux
@@ -22,8 +24,6 @@ scoop install fnm
   scoop help
   ```
 
-## 👽 추가 학습
-
 ### `nvm` vs `npm` vs `fnm`
 
 `nvm` or `fnm`을 설치 -> 원하는 조건으로 Node.js를 설치 -> `npm`으로 필요한 패키지 설치
@@ -37,7 +37,9 @@ scoop install fnm
 - `npm` : Node Package Manager  
   Node.js로 개발된 프로그램(npm 패키지)를 설치, 업데이트, 설치하기 위한 툴
 
-## 📌 Node.js 설치
+## Node.js 설치
+
+---
 
 ```bash
 # 설치 가능한 버전 확인
@@ -53,13 +55,17 @@ fnm list
 fnm current
 ```
 
-## 📌 NPM 업그레이드
+## NPM 업그레이드
+
+---
 
 ```bash
 npm install -g npm
 ```
 
-## 📌 TypeScript + React + Jest + ESLint + Parcel 개발 환경 세팅
+## TypeScript + React + Jest + ESLint + Parcel 개발 환경 세팅
+
+---
 
 ### 작업 폴더 준비
 
@@ -153,7 +159,7 @@ npx tsc --init
 > # 현재 폴더 아래 모든 파일의 내용 검사
 > npx eslint .
 > # 에러난 내용 모두 고치기
-> npx eslint --fix
+> npx eslint . --fix
 > ```
 
 ### 리액트 설치

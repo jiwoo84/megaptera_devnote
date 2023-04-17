@@ -1,6 +1,8 @@
 # 5. Parcel & Eslint
 
-## 📌 Parcel
+## Parcel
+
+---
 
 - 특별한 설정 없이 바로 사용 가능한 빌드 도구 (Zero Configuration)
 - 내부적으로 SWC를 사용해 기존 도구보다 빠르다(ES Module을 적극 활용하는 Vite도 엄청나게 빠름)
@@ -49,6 +51,8 @@ npx servor ./dist
 ```
 
 ## ESLint
+
+---
 
 - **사용 목적**
 
