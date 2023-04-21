@@ -1,8 +1,6 @@
 # 1. 개발 환경 세팅
 
-## fnm 설치
-
----
+## 🍀 fnm 설치
 
 ```bash
 # mac, linux
@@ -37,9 +35,7 @@ scoop install fnm
 - `npm` : Node Package Manager  
   Node.js로 개발된 프로그램(npm 패키지)를 설치, 업데이트, 설치하기 위한 툴
 
-## Node.js 설치
-
----
+## 🍀 Node.js 설치
 
 ```bash
 # 설치 가능한 버전 확인
@@ -57,15 +53,11 @@ fnm current
 
 ## NPM 업그레이드
 
----
-
 ```bash
 npm install -g npm
 ```
 
-## TypeScript + React + Jest + ESLint + Parcel 개발 환경 세팅
-
----
+## 🍀 TypeScript + React + Jest + ESLint + Parcel 개발 환경 세팅
 
 ### 작업 폴더 준비
 

@@ -2,9 +2,7 @@
 
 - 간단히 REPL 사용하려면 ts-node 실행하면 됨 (`npx ts-node`)
 
-## 타입 지정
-
----
+## 🍀 타입 지정
 
 타입 추론이 되기 때문에 너무 완벽히 쓰지 않아도 됨 [(참고)](https://www.typescriptlang.org/ko/docs/handbook/typescript-in-5-minutes.html#%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0-types-by-inference)
 
@@ -222,9 +220,7 @@ let output = identity<string>("myString");
   };
   ```
 
-## Visual Studio Code 자동 완성 + 실시간 오류 검사
-
----
+## 🍀 Visual Studio Code 자동 완성 + 실시간 오류 검사
 
 현실적으로 TypeScript를 쓰는 가장 큰 이유
 
