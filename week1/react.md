@@ -1,11 +1,12 @@
 # 3. React
 
-- 참고자료
-  - [**React 공식문서**](https://ko.reactjs.org/)
-  - [**React Beta 문서**](https://beta.reactjs.org/) : 먼저 보기
-  - [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) : React로 작업하는 프로세스 참고. “상태”를 골라내는 게 핵심
-  - [예전 문서의 설명](https://ko.reactjs.org/docs/thinking-in-react.html) : 한국어로 써있어서 읽기 쉬움, 살짝 참고만 하고 코드 참고 x
-  - [React 코어 개발자가 쓴 React에 대한 이해를 돕는 글](https://overreacted.io/ko/react-as-a-ui-runtime/) : 필독!
+**참고자료**
+
+- [**React 공식문서**](https://ko.reactjs.org/)
+- [**React Beta 문서**](https://beta.reactjs.org/) : 먼저 보기
+- [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) : React로 작업하는 프로세스 참고. “상태”를 골라내는 게 핵심
+- [예전 문서의 설명](https://ko.reactjs.org/docs/thinking-in-react.html) : 한국어로 써있어서 읽기 쉬움, 살짝 참고만 하고 코드 참고 x
+- [React 코어 개발자가 쓴 React에 대한 이해를 돕는 글](https://overreacted.io/ko/react-as-a-ui-runtime/) : 필독!
 
 ## 🍀 렌더링
 
