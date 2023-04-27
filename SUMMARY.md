@@ -12,3 +12,7 @@
 - 2주차 JSX
   - [JSX](week2/jsx.md)
   - [VDOM](week2/vdom.md)
+
+- 3주차 React로 사고하기
+  - [React Component](week3/react_component.md)
+  - [React State](week3/react_state.md)
