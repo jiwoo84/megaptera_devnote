@@ -17,11 +17,23 @@
 
 ### state 원칙
 
-- [DRY (Don’t Repeat Yourself)](https://ko.wikipedia.org/wiki/중복배제) : 정보 중복 지양
-- [SSOT (Single Source of Truth)](https://ko.wikipedia.org/wiki/단일_진실_공급원) : 데이터 요소를 한 곳에서만 제어 또는 편집 가능해야함
 - 변경되는 데이터여야 함
 - 부모로부터 전달받을 수 없음 (있다면 props)
 - 기존 state나 props를 기반으로 계산할 수 없음
+- DRY : 정보 중복 지양
+- SSOT : 데이터 요소를 한 곳에서만 제어 또는 편집 가능해야함
+
+**[DRY (Don’t Repeat Yourself)](https://ko.wikipedia.org/wiki/중복배제)**
+
+소프트웨어 개발 원리의 하나로, 모든 형태의 정보 중복을 지양하는 것
+
+특히 다층 구조 시스템에서 유용함
+
+**[SSOT (Single Source of Truth)](https://ko.wikipedia.org/wiki/단일_진실_공급원)**
+
+정보 시스템 설계 및 이론의 관례로, 데이터 요소를 한 곳에서만 제어 또는 편집하도록 조직하는 것
+
+데이터 요소로의 연결은 모두 참조로만 이루어지고, 데이터의 사본이 존재할 가능성이 없기 때문에 변경되면 전역으로 공유됨
 
 **예시**
 
