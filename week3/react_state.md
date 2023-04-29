@@ -70,15 +70,23 @@ function Form() {
 
 자식 컴포넌트가 부모의 state를 바꾸기 위해서 setState를 전달해야 함
 
-### Inverse Data Flow
+### Inverse Data Flow (역 데이터 흐름)
 
-하위 컴포넌트의 props로 함수를 전달. 흔히 콜백 함수라고 부름.
+하위 컴포넌트의 props로 함수를 전달 (콜백 함수) -> 하위 컴포넌트에서 부모가 가진 state를 변경함
 
-TypeScript(정확히는 JavaScript)는 함수가 일급(first-class) 객체
+TypeScript(JavaScript)는 함수가 일급 객체라서 가능함
 
 => 어떤 함수를 다른 함수에 인자로 넘겨주거나, 어떤 함수를 리턴값으로 사용할 수 있다. 익명 함수, 클로저 등과 함께 사용하면 시너지가 큼.
 
-- [일급 함수](https://developer.mozilla.org/ko/docs/Glossary/First-class_Function) : 함수를 다른 변수와 동일하게 다룸 => 변수에 함수를 할당, 인자로 전달하기 등 가능
+**일급 (first-class) 객체**
+
+다른 객체들에 일반적으로 적용 가능한 연산을 모두 지원하는 객체
+
+- 조건
+  - 함수의 실제 매개변수가 될 수 있다.
+  - 함수의 반환 값이 될 수 있다.
+  - 할당 명령문의 대상이 될 수 있다.
+  - 동일 비교의 대상이 될 수 있다.
 
 ## 🍀 참고
 
