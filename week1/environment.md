@@ -101,7 +101,7 @@ node_modules
 # 설치
 npm i -D typescript
 
-# 타입스크립트 컴파일러 초기화
+# tsconfig.json 파일 생성 -> ts 프로젝트 어떻게 필드할지 설정하는 파일
 npx tsc --init
 ```
 
