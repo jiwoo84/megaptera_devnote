@@ -25,6 +25,6 @@
 
 - 5주차 테스트
   - [TDD](week5/tdd.md)
-  - [React Testing Library](week5/react_testing_library.md.md)
-  - [MSW](week5/msw.md.md)
-  - [Playwright](week5/playwright.md.md)
+  - [React Testing Library](week5/react_testing_library.md)
+  - [MSW](week5/msw.md)
+  - [Playwright](week5/playwright.md)
