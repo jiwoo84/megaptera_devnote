@@ -65,6 +65,9 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
  res.send('Hello, world!');
 });
+
+// JSON으로 전달되는 req.body 받아오기위해 사용
+app.use(express.json())
 ```
 
 ### 데이터 전달하는 REST API 만들기

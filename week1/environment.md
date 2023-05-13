@@ -171,10 +171,45 @@ npm i -D jest @types/jest @swc/core @swc/jest \
     @testing-library/react @testing-library/jest-dom
 ```
 
-`jest.config.js` 파일을 작성해 테스트에서 SWC를 사용하기
-[참고](https://github.com/ahastudio/CodingLife/blob/main/20220726/react/jest.config.js)
+**`jest.config.js` 파일 작성**
+
+테스트에서 SWC 및 typescript 사용하도록 설정
+
+```js
+module.exports = {
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: [
+    '@testing-library/jest-dom/extend-expect',
+    './jest.setup',
+  ],
+  transform: {
+    '^.+\\.(t|j)sx?$': ['@swc/jest', {
+      jsc: {
+        parser: {
+          syntax: 'typescript',
+          jsx: true,
+          decorators: true,
+        },
+        transform: {
+          react: {
+            runtime: 'automatic',
+          },
+        },
+      },
+    }],
+  },
+  testPathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/dist/',
+  ],
+};
+```
 
 ### Parcel 설치
+
+기술 선택 이유:
+
+소규모 프로젝트일 때, 설정이 간단하고 빠르기 때문에
 
 ```bash
 npm i -D parcel

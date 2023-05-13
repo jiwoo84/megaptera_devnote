@@ -6,7 +6,6 @@
   - [개발환경](week1/environment.md)
   - [TypeScript](week1/typescript.md)
   - [React](week1/react.md)
-  - [Testing Library](week1/testing_library.md)
   - [Parcel & ESLint](week1/parcel_eslint.md)
 
 - 2주차 JSX
@@ -23,3 +22,9 @@
   - [React의 Hook](week4/react_hook.md)
   - [useRef & Custom Hook](week4/useref__custom_hook.md)
   - [usehooks-ts](week4/usehooks_ts.md)
+
+- 5주차 테스트
+  - [TDD](week5/tdd.md)
+  - [React Testing Library](week5/react_testing_library.md.md)
+  - [MSW](week5/msw.md.md)
+  - [Playwright](week5/playwright.md.md)
