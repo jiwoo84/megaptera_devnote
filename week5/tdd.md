@@ -56,8 +56,7 @@
 
 - Node.js에 비해 무겁고 초기 구동속도가 느리다.
 - 사용하기 위해 Headless같은 브라우저의 별도 설치가 필요함.
-- ex> Karma, Selenium, Cypress
-a
+- ex) Karma, Selenium, Cypress
 
 **Node.js**
 
@@ -107,18 +106,16 @@ a
 - 최근에는 백엔드에서도 사용하는 추세
 - Mocha와 Chai처럼 RSpec의 describe-it 지원, expect로 단언(assertion) 가능
 - Mocking도 다양한 레벨에서 쉽게 사용 가능
-- Jest 등장 전에는 여러 테스팅 라이브러리를 조합해서 사용했었음 (예로 Mocha나 Jasmin을 test runner로 사용하고, Chai나 Expect같은 Test Mathcer과 Sinon, Testdouble 같은 Test Mock 라이브러리도 필요했음)  
+- Jest 등장 전에는 여러 테스팅 라이브러리를 조합해서 사용했었음 (예로 Mocha나 Jasmin을 test runner로 사용하고, Chai나 Expect같은 Test Mathcer과 Sinon, Testdouble 같은 Test Mock 라이브러리도 필요했음)
     => Jest = test runner + test mathcer + test mock (하나만 설치하면 모든 프레임워크 제공)
-- <details>
-    <summary><b>참고자료</b></summary>
 
-  - [BETTER SPECS](https://www.betterspecs.org/) → RSpec 베스트 프랙티스 모음. 그대로 쓸 수는 없지만, 참고하자.
-  - [Ginkgo - Go 언어 개발자를 위한 BDD 테스팅 프레임워크](https://youtu.be/gfTsSBRvdqI) (Go 언어 사례)
-  - [JUnit5로 계층 구조의 테스트 코드 작성하기](https://johngrib.github.io/wiki/junit5-nested/) (Java 언어 사례)
-  - [Let’s RSpec](https://github.com/ahastudio/til/blob/main/ruby/20161206-rspec-let.md) → Jest는 RSpec의 let 같은 걸 지원하지 않기 때문에, 핵심 아이디어를 가져와서 적당한 수준에서 잘 써야 한다.
-  - [Given-When-Then](https://www.notion.so/Given-When-Then-c4b62b46710942a181a6d477e502e458)
+**참고자료**
 
-</details>
+- [BETTER SPECS](https://www.betterspecs.org/) → RSpec 베스트 프랙티스 모음. 그대로 쓸 수는 없지만, 참고하자.
+- [Ginkgo - Go 언어 개발자를 위한 BDD 테스팅 프레임워크](https://youtu.be/gfTsSBRvdqI) (Go 언어 사례)
+- [JUnit5로 계층 구조의 테스트 코드 작성하기](https://johngrib.github.io/wiki/junit5-nested/) (Java 언어 사례)
+- [Let’s RSpec](https://github.com/ahastudio/til/blob/main/ruby/20161206-rspec-let.md) → Jest는 RSpec의 let 같은 걸 지원하지 않기 때문에, 핵심 아이디어를 가져와서 적당한 수준에서 잘 써야 한다.
+- [Given-When-Then](https://www.notion.so/Given-When-Then-c4b62b46710942a181a6d477e502e458)
 
 ### 테스트 실행
 
@@ -133,7 +130,7 @@ a
   npx jest --watchAll
   ```
 
-- swc가 타입을 제외하고 테스팅하기 때문에 타입 검사는 따로 ts로 돌려야함  
+- swc가 타입을 제외하고 테스팅하기 때문에 타입 검사는 따로 ts로 돌려야함
   `npx tsc --noEmit`
 
 ### 작성 과정 템플릿 - `Given-When-Then`

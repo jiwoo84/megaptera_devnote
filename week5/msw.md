@@ -59,25 +59,7 @@ module.exports = {
 };
 ```
 
-### `src/setupTests.ts` 파일 생성 및 설정
-
-테스트 실행시 필요한 동작 세팅
-
-```jsx
-import server from './mocks/server';
-
-// 모든 테스트 실행 전에 MSW 서버 실행
-// onUnhandledRequest : 핸들러 없다면 에러내서 실수 방지
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
-
-// 모든 테스트 실행 후에 서버 닫기
-afterAll(() => server.close());
-
-// 각 테스트 실행 후에 서버 리셋
-afterEach(() => server.resetHandlers());
-```
-
-### msw 서버 생성
+### 2. msw 서버 생성
 
 src 안에 mocks 폴더 생성 -> `server.ts` 파일 생성
 
@@ -92,7 +74,7 @@ const server = setupServer(...handlers);
 export default server;
 ```
 
-### 핸들러 만들기
+### 3. 핸들러 만들기
 
 server에서 네트워크 요청을 가로채서 실행할 handler 만들기
 
@@ -126,9 +108,58 @@ const handlers = [
 export default handlers;
 ```
 
+### 4. 서버 실행 설정
+
+**테스트시 서버 실행 및 필요한 동작 세팅**
+
+`src/setupTests.ts` 파일 생성 및 설정
+
+```jsx
+import server from './mocks/server';
+
+// 모든 테스트 실행 전에 MSW 서버 실행
+// onUnhandledRequest : 핸들러 없다면 에러내서 실수 방지
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+
+// 모든 테스트 실행 후에 서버 닫기
+afterAll(() => server.close());
+
+// 각 테스트 실행 후에 서버 리셋
+afterEach(() => server.resetHandlers());
+```
+
+**브라우저 환경에서 사용하기**
+
+위 코드만 설정하면 Node.js 환경에서만 서버가 실행되기 때문에 브라우저로 화면을 띄울 때는 데이터가 받아와지지 않음
+
+보통 브라우저 환경에서 API를 모킹할 때는 worker를 사용하지만 server를 생성했다면 worker를 또 만들 필요 없이, 초기 실행되는 파일 상단에 서버를 실행시켜주면 된다.
+
+```tsx
+// src/main.tsx
+import ReactDOM from 'react-dom/client';
+
+import App from './App';
+import server from './mocks/server';
+
+function main() {
+  server.listen(); // 여기에 적어주면 됨
+
+  const container = document.getElementById('root');
+
+  if (!container) {
+    return;
+  }
+
+  const root = ReactDOM.createRoot(container);
+  root.render(<App />);
+}
+
+main();
+```
+
 ### 테스트 파일 작성
 
-테스트 과정에서 파일에서 서버 통신을 하면 msw에서 가로채서 handlers에 설정한대로 동작하기 때문에 따로 mocking이 필요 없음
+테스트 과정에서 파일에서 서버 통신을 하면 msw에서 가로채서 handlers에 설정한대로 동작하기 때문에 따로 mocking이 필요 없고, 실행을 기다리는 동작으로 감싸주면 됨
 
 **waitFor(fnc)**
 
@@ -146,7 +177,7 @@ import App from './App';
 
 test('App', async () => {
  render(<App />);
- 
+
  await waitFor(() => {
   screen.getByText('Apple');
  });
