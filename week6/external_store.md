@@ -41,14 +41,37 @@ UI를 다루는 부분으로 사용자와 가장 가까움
 
 - `DAQ`, `Repository`가 해당됨
 
+### IPO (Input → Process → Output)
+
+위 세 단계로 코드를 나누고, 각자의 역할에만 충실하면 되는 **프로세스 구성 방식**
+
+거대한 프로그램이 아니라도 이 3단계로 코드를 적절히 구분할 시 이해하고 유지보수하는데 크게 도움이 됨
+
+하나의 Output은 다시 사용자에게 Input을 요청하게 되고, 일반적인 프로그램은 다음과 같이 계속 순환하는 구조가 됨
+
+1. Input: 프로그램 시작
+2. Process: 프로그램 초기화
+3. Output: 사용자에게 초기 UI 보여주기
+4. Input: 사용자의 입력
+5. Process: 사용자의 입력에 따라 처리
+6. Output: 처리 결과 보여주기
+7. Input: 사용자의 또 다른 입력
+8. …반복…
+
 ### MVC
 
 웹 서비스의 가장 대표적인 구성 패턴이자 **설계 방법론**
 
 Model / View / Controller를 구분하여 기능을 분리하고 프로젝트 구조를 구성함
 
-- bidirectional data flow (양방향 데이터 흐름)
-    하나의 유저 인터렉션 발생 시 그 인터렉션으로 발생한 업데이트가 다른 연쇄 업데이트를 만들어낼 수 있음 ⇒ 업데이트의 근원을 추적하기 힘듬
+bidirectional data flow (양방향 데이터 흐름)
+
+: 하나의 유저 인터렉션 발생 시 그 인터렉션으로 발생한 업데이트가 다른 연쇄 업데이트를 만들어낼 수 있음 ⇒ 업데이트의 근원을 추적하기 힘듬
+
+- IPO와 매핑하자면 (IPO는 프로세스의 구성 방식이기에 완벽하게 매핑은 X)
+  - Model → Process
+  - View → Output
+  - Controller → Input
 
 **Model**
 
@@ -71,84 +94,140 @@ Model을 통해 데이터에 접근하여 처리 결과를 View로 전달하는 
 - 요청을 받아 데이터를 처리하고 응답하는 코드
 - 데이터에 직접 접근 x
 
-### IPO (Input → Process → Output)
-
-위 세 단계로 코드를 나누고, 각자의 역할에만 충실하면 되는 **프로세스 구성 방식**
-
-거대한 프로그램이 아니라도 이 3단계로 코드를 적절히 구분할 시 이해하고 유지보수하는데 크게 도움이 됨
-
-하나의 Output은 다시 사용자에게 Input을 요청하게 되고, 일반적인 프로그램은 다음과 같이 계속 순환하는 구조가 됨
-
-1. Input: 프로그램 시작
-2. Process: 프로그램 초기화
-3. Output: 사용자에게 초기 UI 보여주기
-4. Input: 사용자의 입력
-5. Process: 사용자의 입력에 따라 처리
-6. Output: 처리 결과 보여주기
-7. Input: 사용자의 또 다른 입력
-8. …반복…
-
-**MVC와 매핑하자면...**
-
-MVC는 설계 방법론이고, 이는 프로세스 구성 방식이기에 완벽히 매핑되는 것은 아님
-
-- Model → Process
-- View → Output
-- Controller → Input
-
 ## 🍀 Flux Architecture
 
-> [Flux](https://facebook.github.io/flux/docs/in-depth-overview/)
-> [Flux (한국어)](https://haruair.github.io/flux/docs/overview.html)
+Facebook(현 Meta)에서 MVC의 대안으로 내세운 아키텍처 [(참고 자료)](https://haruair.github.io/flux/docs/overview.html)
 
-> [Redux의 핵심](https://ko.redux.js.org/tutorials/essentials/part-1-overview-concepts)
+MVC의 단점을 극복하기 위해 `unidirectional data flow`(단방향 데이터 흐름)를 강조
 
-Facebook(현 Meta)에서 MVC의 대안으로 내세운 아키텍처
+- 전통적인 MVC는 이를 지양하지만, 흔하게 bidirectional data flow (양방향 데이터 흐름)이 나타나게 되고 이는 Model-View의 관계를 복잡하게 함
 
-`unidirectional data flow`(단방향 데이터 흐름)를 강조
+**MVC vs Flux**
 
-- MVC의 단점: 전통적인 MVC는 이를 지양하지만, 흔하게 bidirectional data flow (양방향 데이터 흐름)이 나타나게 되고 이는 Model-View의 관계를 복잡하게 함
+<div style="display:flex">
+<img src="https://velog.velcdn.com/images%2Fwnsaud9322%2Fpost%2F8a38ac45-6771-45e6-a92a-1fd26d9da812%2F1_PBgAz9U9SrkINPo-n5glgw.gif" width="300px"/>
+
+<img src="https://velog.velcdn.com/images%2Fwnsaud9322%2Fpost%2Fc00962d2-46b1-43ce-8d88-72c038164993%2F1_T_Q66EkNEhca6TyrvY1xBQ.gif" width="400px"/>
+</div>
 
 ### 구조
 
-1. Action → 이벤트/메시지 같은 객체.
-2. Dispatcher → (여러) Store로 Action을 전달. 메시지 브로커와 유사하다.
-3. Store (여러 개) → 받은 Action에 따라 상태를 변경. 상태 변경을 알림.
-4. View → Store의 상태를 반영.
+<img src="https://wit.nts-corp.com/wp-content/uploads/2022/10/01.png" width="500px" />
 
-Redux는 단일 Store를 사용함으로써 좀 더 단순한 그림을 제안한다.
+1. `Action` → 이벤트/메시지 같은 객체
+2. `Dispatcher` → (여러) Store로 Action을 전달. 메시지 브로커와 유사
+3. `Store` (여러 개) → 받은 Action에 따라 상태를 변경. 상태 변경을 알림
+4. `View` → Store의 상태를 반영
 
-1. Action
-2. Store → dispatch를 통해 Action을 받고, 사용자가 정의한 reducer를 통해 State를 변경한다 (기존의 state 객체를 망가뜨리지 않고, 이에 새로운 값을 추가해서 만든 새로운 객체를 현재 state에 할당함)
-3. View → State를 반영.
+## 🍀 Redux
 
-Action을 어떻게 표현하느냐가 사용성에 큰 차이를 만든다. 하지만 상태를 UI에 반영하는 방법은 모두 동일하다.
+Redux는 flux 패턴을 바탕으로 단일 Store를 사용함으로써 좀 더 단순한 구조임
 
-3단계 프로세스와 거칠게 매핑하면 다음과 같다.
+### 구조
+
+Action을 어떻게 표현하느냐가 사용성에 큰 차이를 만든다. 하지만 상태를 UI에 반영하는 방법(view)는 모두 동일함 (거의 REACT 사용)
+
+1. `Action`
+2. `Store` → dispatch를 통해 Action을 받고, 사용자가 정의한 reducer를 통해 State를 변경한다 (기존의 state 객체를 망가뜨리지 않고, 이에 새로운 값을 추가해서 만든 새로운 객체를 현재 state에 할당함)
+3. View → State를 반영
+
+**IPO와 대강 매핑해보기**
 
 - Input → Action + dispatch
 - Process → reducer
 - Output → View(React)
 
-## External Store
+## 🍀 External Store
 
 > [forceUpdate와 같은 것이 있습니까?](https://ko.reactjs.org/docs/hooks-faq.html#is-there-something-like-forceupdate)
->
 
-특별히 쓰이지 않는 상태라고 해도(React는 이걸 판단하기 어려움), “상태가 바뀌면” 해당 컴포넌트와 하위 컴포넌트를 다시 렌더링한다.
+리액트 내에서 상태값을 관리하지 않는 것 (외부에 store를 두고 관리)
 
-```tsx
-const [, setState] = useState({});
-const forceUpdate = () => setState({});
-```
+특별히 쓰이지 않는 상태라고 해도(React는 이걸 판단하기 어려움), “상태가 바뀌면” 해당 컴포넌트와 하위 컴포넌트를 다시 렌더링함
 
-커스텀 Hook으로 만들자.
+### 커스텀 forceUpdate 만들기
+
+class 컴포넌트에서 강제 리렌더링 하는 함수 forceUpdate를 함수 컴포넌트에서 사용하는 방법 -> useState를 사용해 커스텀으로 만들기
 
 ```tsx
+// hook/useForceUpdate.ts
 function useForceUpdate() {
- const [, setState] = useState({});
- return useCallback(() => setState({}), []);
+    const [, setState] = useState({}); // setState만 사용함
+
+    const forceUpdate = () => setState({}); // 빈 객체로 값을 변경해도 새로운 주소의 객체가 되니 리렌더링 됨
+    return forceUpdate;
+
+    // 더 다듬은 버전
+    return useCallback(() => setState({}), []); // 메모리를 위해 useCallback으로 감싸서 그대로 반환
 }
 ```
 
-이런 접근을 잘 하면, React가 UI를 담당하고, 순수한 TypeScript(또는 JavaScript)가 비즈니스 로직을 담당하는, 관심사의 분리(Separation of Concerns)를 명확히 할 수 있다. 자주 바뀌는 UI 요소에 대한 테스트 대신, 오래 유지되는(바뀌면 치명적인) 비즈니스 로직에 대한 테스트 코드를 작성해 유지보수에 도움이 되는 테스트 코드를 치밀하게 작성할 수 있다.
+**사용 예시**
+
+`count`가 상태가 아니자만 버튼을 누르면 강제적으로 리렌더링이 일어나기 때문에 count가 증가되는 모습이 출력됨
+
+```tsx
+import useForceUpdate from './hook/useForceUpdate';
+
+let count = 0;
+
+function counter() {
+    const forceUpdate = useForceUpdate();
+
+    const handleClick = () => {
+        count ++;
+        forceUpdate();
+    }
+
+    return (
+        <div>
+            <span>{count}</span>
+            <button type="button" onClick={handleClick}>Increase</button>
+        </div>
+    )
+}
+```
+
+### 장점
+
+1. 관심사의 분리를 명확히 할 수 있음 (React가 UI를 담당하고, 순수한 ts/js가 비즈니스 로직을 담당)
+
+2. 유지보수에 도움이 되는 테스트 코드를 치밀하게 작성 가능: 자주 바뀌는 UI 요소에 대한 테스트 대신, 오래 유지되는(바뀌면 치명적인) 비즈니스 로직에 대한 테스트 코드
+
+**예시**
+
+위 코드를 business logic과 ui로 분리
+
+중요하고 잘 변경되지 않는 business logic에 대한 테스트를 따로 작성할 수 있음
+
+=> 따로 테스트를 진행하니 부분별로 서로 신경쓰지 않아도 되고, 어떻게 실행되는지 알 필요도 없음
+
+```tsx
+import useForceUpdate from './hook/useForceUpdate';
+
+// Business logic
+
+let count = 0;
+
+function increase() {
+    count ++;
+}
+
+// UI
+
+function counter() {
+    const forceUpdate = useForceUpdate();
+
+    const handleClick = () => {
+        increase(); // increase가 뭔지, 어떻게 실행되는지 신경쓰지 않아도 됨
+        forceUpdate();
+    }
+
+    return (
+        <div>
+            <span>{count}</span>
+            <button type="button" onClick={handleClick}>Increase</button>
+        </div>
+    )
+}
+```
