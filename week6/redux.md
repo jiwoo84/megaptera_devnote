@@ -1,6 +1,13 @@
-## Redux 따라하기
+# Redux 따라하기
 
-`src/stores/BaseStore.ts` 파일
+## 학습 키워드
+
+- Redux
+- Reflect
+
+## 🍀 redux를 사용하지 않고 비슷하게 만들어보기
+
+### `src/stores/BaseStore.ts` 파일
 
 ```tsx
 export type Action<Payload> = {
@@ -48,7 +55,7 @@ export default class BaseStore<State> {
 }
 ```
 
-`src/stores/Store.ts` 파일
+### `src/stores/Store.ts` 파일
 
 ```tsx
 import { singleton } from 'tsyringe';
@@ -89,7 +96,7 @@ export default class Store extends BaseStore<State> {
 }
 ```
 
-`src/hooks/useDispatch.ts` 파일
+### `src/hooks/useDispatch.ts` 파일
 
 ```tsx
 import { container } from 'tsyringe';
@@ -142,7 +149,7 @@ export default function useSelector<T>(selector: Selector<T>): T {
 }
 ```
 
-Dispatch와 Selector 사용.
+### Dispatch와 Selector 사용
 
 ```tsx
 const dispatch = useDispatch();
@@ -154,7 +161,7 @@ dispatch({ type: 'decrease' });
 dispatch({ type: 'increase', payload: 10 });
 ```
 
-## Action을 메서드로 처리하기
+### Action을 메서드로 처리하기
 
 `src/stores/ObjectStore.ts` 파일
 
@@ -178,7 +185,7 @@ export default class ObjectStore {
 }
 ```
 
-`src/stores/CounterStore.ts` 파일
+### `src/stores/CounterStore.ts` 파일
 
 ```tsx
 import { singleton } from 'tsyringe';
@@ -201,7 +208,7 @@ export default class CounterStore extends ObjectStore {
 }
 ```
 
-`src/hooks/useObjectStore.ts` 파일
+### `src/hooks/useObjectStore.ts` 파일
 
 ```tsx
 import { useEffect } from 'react';
@@ -222,7 +229,7 @@ export default function useObjectStore<T extends ObjectStore>(store: T) {
 }
 ```
 
-`src/hooks/useCounterStore.ts` 파일
+### `src/hooks/useCounterStore.ts` 파일
 
 ```tsx
 import { container } from 'tsyringe';

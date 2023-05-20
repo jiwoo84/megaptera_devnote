@@ -1,9 +1,15 @@
-## usestore-ts 사용
+# usestore-ts 사용
 
-> [usestore-ts](https://usestore-ts.com/)
->
+## 학습 키워드
 
-Store 작성.
+- usesotre-ts
+- useSyncExternalStore
+
+## 🍀 usestore-ts 사용해서 상태관리 하기
+
+참고: [usestore-ts](https://usestore-ts.com/)
+
+### Store 작성
 
 ```tsx
 import { singleton } from 'tsyringe';
@@ -27,7 +33,7 @@ export default class CounterStore {
 }
 ```
 
-커스텀 Hook 작성.
+### 커스텀 Hook 작성
 
 ```tsx
 import { container } from 'tsyringe';
@@ -70,7 +76,7 @@ class PostStore {
 }
 ```
 
-## 참고
+### 참고
 
 - [useSyncExternalStore](https://beta.reactjs.org/reference/react/useSyncExternalStore)
 - [FECONF 2022 - 상태관리 이 전쟁을 끝내러 왔다](https://youtu.be/KEDUqA9JeIo)

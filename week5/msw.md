@@ -6,14 +6,11 @@
 - MSW(Mock Service Worker)
 - polyfill(폴리필)
 
-> [아샬의 Mock Service Worker (MSW)](https://github.com/ahastudio/til/blob/main/mock-api/msw.md)
->
+### 참고자료
 
-> [Mocking REST API](https://mswjs.io/docs/getting-started/mocks/rest-api)
->
-
-> [Integrate mocking into Node](https://mswjs.io/docs/getting-started/integrate/node)
->
+- [아샬의 Mock Service Worker (MSW)](https://github.com/ahastudio/til/blob/main/mock-api/msw.md)
+- [Mocking REST API](https://mswjs.io/docs/getting-started/mocks/rest-api)
+- [Integrate mocking into Node](https://mswjs.io/docs/getting-started/integrate/node)
 
 ## 🍀 MSW (Mock Service Worker)란?
 
