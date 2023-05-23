@@ -71,7 +71,7 @@ const server = setupServer(...handlers);
 export default server;
 ```
 
-### 3. 핸들러 만들기
+### 3. Handler 만들기
 
 server에서 네트워크 요청을 가로채서 실행할 handler 만들기
 
@@ -96,7 +96,7 @@ const handlers = [
   // 위 url로 들어오는 요청은 모두 이렇게 반환됨
     return res(
       ctx.status(200), // 안써도 됨 (기본이 200임)
-      ctx.json({ restaurants }),
+      ctx.json({ products }),
       // express라면 return ({ products }) 쓰면 끝이지만 이건 express가 아니기 떄문에 이렇게 작성
    );
   }),
@@ -191,11 +191,19 @@ GitHub에서 만든 fetch polyfill인 whatwg-fetch 설치해서 사용 [(저장�
 
 **테스트 파일에 whatwg-fetch 불러오기**
 
-```ts
+```js
 import 'whatwg-fetch';
 ```
 
 테스트에서 사용시 모든 파일 상단에 쓰거나, `setupTests` 파일 상단에 넣으면 됨
+
+**`window.fetch()`로 사용하기**
+
+fetch 작성시에 앞에 window를 붙여주면 끝!
+
+```js
+window.fetch(url);
+```
 
 ### 폴리필(polyfill)
 
