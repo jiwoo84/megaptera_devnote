@@ -34,6 +34,10 @@ UI 테스트에 특화된 라이브러리. 거의 E2E Test처럼 쓸 수 있다.
 
 ### 1.test 함수로 개별 테스트를 나열
 
+**getByText**
+
+문자열 존재하는지 검사 (여러개 존재하면 X)
+
 ```jsx
 test("Greeting", () => {
   render(<Greeting name="world" />); // 해당 컴포넌트를 렌더링 시킴
