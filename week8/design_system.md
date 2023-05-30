@@ -1,24 +1,18 @@
-## Design System
+# Design System
 
-> [Laura Kalbag의 “Design Systems” 소개](https://24ways.org/2012/design-systems/)
->
+## 학습 키워드
 
-> [Laura Kalbag의 “Design Systems” 슬라이드](https://speakerdeck.com/laurakalbag/design-systems-1)
->
+- 반응형 웹 디자인(Responsive web design)
+- 디자인 시스템(Design System)
+- Atomic Design
 
-> [Nielsen Norman Group의 “Design Systems 101”](https://www.nngroup.com/articles/design-systems-101/)
->
+## Design System이란?
 
-<aside>
-👉 Summary: A design system is a set of **standards** to manage design **at scale** by **reducing redundancy** while creating a **shared language** and **visual consistency** across different pages and channels.
+여러 페이지와 채널에서 같은 언어를 공유하며 시각적 일관성을 유지하면서 중복을 줄여 대규모로 디자인을 관리하기 위한 일종의 표준의 집합.
 
-Definition: A design system is a complete set of standards intended to manage design at scale using **reusable components and patterns**.
+재사용 가능한 구성 요소와 패턴을 사용하며, Theme과 Component라는 개념을 활용할 수 있다.
 
-</aside>
-
-우리는 Theme과 Component라는 개념을 활용할 수 있다.
-
-### (BONUS)
+### BONUS
 
 Jakob Nielsen과 Donald Norman은 UX 분야에서 전설적인 인물들. 아샬이 자주 참고한다(이 회사엔 없지만 앨런 쿠퍼도 포함).
 
@@ -34,19 +28,19 @@ Jakob Nielsen과 Donald Norman은 UX 분야에서 전설적인 인물들. 아샬
 - [Polaris (Shopify)](https://polaris.shopify.com/)
 - [Lightning Design System (Salesforce)](https://www.lightningdesignsystem.com/)
 - [Mailchimp Pattern Library](https://ux.mailchimp.com/patterns)
-- [Ant Design](https://ant.design/)
+- [Ant Design](https://ant.design/) : 피그마에서도 사용 가능
 
 ### Gallery
+
+다양한 페이지의 css 스타일 유형을 엿볼 수 있음
 
 - [Design Systems Gallery](https://designsystemsrepo.com/design-systems/)
 - [Design Systems](https://www.designsystems.com/open-design-systems/)
 
 ### Atomic Design
 
+디자인 시스템을 만들기 위한 방법론
+
+너무 분류에 집착하지 말 것
+
 > [Atomic Design 소개 글](https://bradfrost.com/blog/post/atomic-web-design/)
->
-
-> [Atomic Design 전자책](https://atomicdesign.bradfrost.com/)
->
-
-Atomic design is methodology for **creating design systems**.
