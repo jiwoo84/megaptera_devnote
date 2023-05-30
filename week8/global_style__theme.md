@@ -1,24 +1,26 @@
-### Global Style
+# Global Style
 
-> [createGlobalStyle](https://styled-components.com/docs/api#createglobalstyle)
->
+## 학습 키워드
 
-> [대체 CSS box model](https://developer.mozilla.org/ko/docs/Learn/CSS/Building_blocks/The_box_model#대체_css_box_model)
->
+- Reset CSS
+- `box-sizing` 속성
+- `word-break` 속성
+- Theme
+- ThemeProvider
 
-> [box-sizing](https://developer.mozilla.org/ko/docs/Web/CSS/box-sizing)
->
+### 참고 자료
 
-> [The 62.5% Font Size Trick](https://www.aleksandrhovhannisyan.com/blog/62-5-percent-font-size-trick/)
->
+아래 자료를 바탕으로 GlobalStyle을 만들어서 적용할 예정
 
-> [keep-all-villain](https://twitter.com/keepallvillain)
->
+- [createGlobalStyle](https://styled-components.com/docs/api#createglobalstyle) : GlobalStyle 만드는 방식
 
-> [word-break](https://developer.mozilla.org/ko/docs/Web/CSS/word-break)
->
+- [대체 CSS box model](https://developer.mozilla.org/ko/docs/Learn/CSS/Building_blocks/The_box_model#대체_css_box_model) / [box-sizing](https://developer.mozilla.org/ko/docs/Web/CSS/box-sizing) : 박스 사이징 커스텀
 
-전역 스타일 지정.
+- [The 62.5% Font Size Trick](https://www.aleksandrhovhannisyan.com/blog/62-5-percent-font-size-trick/): rem, px을 적절히 사용할 수 있도록 커스텀
+
+- [word-break](https://developer.mozilla.org/ko/docs/Web/CSS/word-break) : 언어에 따라 띄어쓰기, 줄넘김 설정
+
+### 전역 스타일 만들기
 
 ```tsx
 import { createGlobalStyle } from 'styled-components';
@@ -52,7 +54,47 @@ const GlobalStyle = createGlobalStyle`
 export default GlobalStyle;
 ```
 
-마찬가지로 App 컴포넌트에서 사용.
+**설명**
+
+```tsx
+const GlobalStyle = createGlobalStyle`
+
+// 가로,세로 길이가 테두리 기준으로 되도록 설정
+ html {
+  box-sizing: border-box;
+ }
+ 
+ // 민약 위 설정 바꾼다면 모두 바뀜
+ *,
+ *::before,
+ *::after {
+  box-sizing: inherit;
+ }
+ 
+
+// 1rem = 10px이 됨 (rem은 font-size로 결정됨)
+// 유저가 폰트 크기를 바꾸면 rem을 사용한 모든 것의 크기가 변경됨
+// 크기를 키우면 다 커지는게 맞기 때문에 이렇게 설정
+ html {
+  font-size: 62.5%;
+ }
+
+
+ // 기본 폰트 사이즈를 16px로 설정 
+ body {
+  font-size: 1.6rem;
+ }
+ 
+ // 한글은 띄어쓰기가 있어서 문장이 끊기지 않도록 설정
+ :lang(ko) {
+  h1, h2, h3 {
+   word-break: keep-all;
+  }
+ }
+`;
+```
+
+### App 컴포넌트에서 사용하기
 
 ```tsx
 import { Reset } from 'styled-reset';
