@@ -105,7 +105,8 @@ npm i -D typescript
 npx tsc --init
 ```
 
-- `-D` (=`--save-dev`)  
+- `-D` (=`--save-dev`)
+
   생략하면 package.json의 dependencies, 붙이면 devDependencies 안에 설치됨
 
   - dependencies: 프로그램에 직접 사용됨
@@ -142,7 +143,8 @@ npx tsc --init
    - jest 사용한다면 미리 `env`에 `jest: true` 넣어주면 좋음
    - 상단에 매번 React import하기 싫다면 extends에 `plugin:react/jsx-runtime` 추가
 
-3. `.eslintignore` 파일 작성  
+3. `.eslintignore` 파일 작성
+
    eslint로 문법 검사하지 않을 파일 세팅
 
 > 💡 eslint 적용하여 파일 수정하기
@@ -204,6 +206,27 @@ module.exports = {
   ],
 };
 ```
+
+**`setupTest.ts` 파일 생성**
+
+테스트 실행 전에 할 동작 설정하는 파일
+
+- 일단 존재해야 테스트가 돌아감
+
+- MSW 사용한다면 실행 전에 서버를 시작하거나, 끝낼 때 서버를 닫는 코드를 써야함
+
+  ```tsx
+  // src/setupTest.ts 예시 (MSW 파트에 있음)
+  import 'whatwg-fetch';
+
+  import server from './mocks/server';
+
+  beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+
+  afterAll(() => server.close());
+
+  afterEach(() => server.restoreHandlers());
+  ```
 
 > 💡 swc란?
 >

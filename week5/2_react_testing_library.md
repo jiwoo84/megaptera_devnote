@@ -28,17 +28,42 @@ UI 테스트에 특화된 라이브러리. 거의 E2E Test처럼 쓸 수 있다.
 - [프론트엔드(Front-end)도 테스트해야 하나요?](https://youtu.be/-kUmsKRmOnA)
 - [Mocking 때문에 테스트 코드를 작성하기 어렵나요](https://youtu.be/RoQtNLl-Wko)
 
-## 🍀 작성 방법
+## 🍀 jest + react testing library 작성 방법
 
 [공식문서 참고](https://testing-library.com/docs/)
 
+**react testing library 쿼리함수**
+
+없으면 에러를 발생시키는 `getBy`를 주로 사용함
+
+- `getBy`
+
+  쿼리에 대해 일치하는 노드를 반환 (실패시 오류 발생)
+
+  둘 이상의 요소가 예상되는 경우 getAllBy 사용
+
+- `queryBy`
+
+  쿼리에 대해 일치하는 노드를 반환 (요소가 없으면 null 반환해서 에러 발생 X)
+
+  둘 이상의 요소가 예상되는 경우 queryAllBy 사용
+
+- `findBy` (getBy + waitFor)
+
+  주어진 쿼리와 일치하는 요소가 발견되면 Promise를 반환
+
+  기본 제한 시간 이내에 발견하지 못하면 reject
+
+  둘 이상의 요소를 찾아야 하는 경우 findAllBy 사용
+
+- `waitFor`
+
+  일정 기간동안 기다려야 할 때 waitFor을 사용하여 통과할 때까지 대기함
+
 ### 1.test 함수로 개별 테스트를 나열
 
-**getByText**
-
-문자열 존재하는지 검사 (여러개 존재하면 X)
-
 ```jsx
+// src/components/Greeting.test.tsx
 test("Greeting", () => {
   render(<Greeting name="world" />); // 해당 컴포넌트를 렌더링 시킴
 
@@ -48,13 +73,8 @@ test("Greeting", () => {
 
   expect(screen.queryByText(/Hi/)).not.toBeInTheDocument();
 });
-```
 
-- getBy vs queryBy
-
-  엘리먼트 존재하지 않을 때, `getBy`는 에러 / `queryBy`는 에러가 나지 않음
-
-```jsx
+// src/components/TextField.test.tsx
 import { render, screen } from '@testing-library/react';
 
 import TextField from './TextField';
@@ -87,12 +107,6 @@ const text = 'Tester'
   screen.getByPlaceholderText(/input your name/)
 });
 ```
-
-> 💡 테스트코드 작성의 의의
->
-> 테스트 코드, 즉 컴포넌트를 사용하는 코드를 작성하면서 해당 컴포넌트의 인터페이스를 점검할 수 있음 (기존에는 label이 빠져있었고, text 같이 범용적인 표현을 사용하지 않은 문제)
->
-> 구현 중에 발견하는 것보다 테스트 코드를 먼저 작성하는 것에 문제 발생을 줄이고, 발생 시에 빨리 수정 => 비용이 감소함 (시간이 지나면 해당 코드에 대한 지식이 감소하고, 자신감 또한 감소하기 때문에 건드리기 힘든 코드가 됨)
 
 ### 2. BDD 스타일로 주체-행위 중심으로 테스트를 조직화
 

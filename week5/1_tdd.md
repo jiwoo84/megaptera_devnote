@@ -11,24 +11,30 @@
 
 프로그램을 실행하여 오류과 결함을 검증하고 애플리케이션이 요구사항에 맞게 동작하는지 검증하는 절차
 
+> 💡 테스트코드 작성의 의의
+>
+> 테스트 코드, 즉 컴포넌트를 사용하는 코드를 작성하면서 해당 컴포넌트의 인터페이스를 점검할 수 있음 (기존에는 label이 빠져있었고, text 같이 범용적인 표현을 사용하지 않은 문제)
+>
+> 구현 중에 발견하는 것보다 테스트 코드를 먼저 작성하는 것에 문제 발생을 줄이고, 발생 시에 빨리 수정 => 비용이 감소함 (시간이 지나면 해당 코드에 대한 지식이 감소하고, 자신감 또한 감소하기 때문에 건드리기 힘든 코드가 됨)
+
 ### 테스트의 종류 (feat. 테스팅 트로피)
 
-`Static 테스트` : 코드를 실행시키지 않고 하는 테스트
+**`Static 테스트`** : 코드를 실행시키지 않고 하는 테스트
 
 - 구문 오류, 나쁜 코드 스타일 등을 검증
 - ex) ESlint, Typescript
 
-`Unit 테스트` : 기능의 개별적인 단위(기능, 컴포넌트 단위)를 떼어 분리된 환경에서 테스트 하는 것
+**`Unit 테스트`** : 기능의 개별적인 단위(기능, 컴포넌트 단위)를 떼어 분리된 환경에서 테스트 하는 것
 
 - 장점: 단위가 작아서 작성 비용이 낮고 실행속도가 빠름
 - ex) jest
 
-`Integration 테스트` : 어플의 여러 부분들이 통합되어 제대로 상호작용하는지 확인하는 테스트
+**`Integration 테스트`** : 어플의 여러 부분들이 통합되어 제대로 상호작용하는지 확인하는 테스트
 
 - 주로 단위보다 큰 범위(페이지) 테스트
 - ex) jest, RTL
 
-`E2E 테스트` : 실제 사용자가 사용하는 것과 같은 조건에서 전체 시스템을 테스트
+**`E2E 테스트`** : 실제 사용자가 사용하는 것과 같은 조건에서 전체 시스템을 테스트
 
 - API 서버, DB 등의 외부 서비스를 모두 사용하여 통합된 시스템 테스트
 - 비용이 많이 들고 속도도 느림
@@ -145,62 +151,102 @@
 
 > [예제가 나온 참고글](https://github.com/ahastudio/til/blob/main/blog/2018/12-08-given-when-then.md)
 
-### 작성 방식
+### jest 구성요소
+
+- `describe(name, fn)` : 여러 테스트를 그룹화하는 블록 생성
+
+- `test(name, fn, [timeout])` : 개별 테스트를 수행 (하나의 문장와 같음)
+
+- `expect(value).Matchers()` = value가 Matchers() 할 것으로 기대됨
+
+  (사이에 수식해주는 Mdoifiers가 사용되기도 함)
+
+### 작성 예시
 
 테스트 케이스를 정의할 때 크게 두 가지 방법을 사용한다:
 
 **1.test 함수로 개별 테스트를 나열***
 
+`주어 -> 결과` 형식으로 작성
+
 ```jsx
-describe("add(주어)", () => {
-  it("returns sum of two numbers(결과)", () => {
-    expect(add(1, 2)).toBe(3);
-  });
+import { render, screen } from '@testing-library/react';
+
+import TextField from './TextField';
+
+test('TextField', () => { 
+ const text = 'Tester';
+ const setText = () => {
+  // do nothing...
+ };
+
+ render(( 
+  <TextField
+   label="Name"
+   placeholder="Input your name"
+   text={text}
+   setText={setText}  
+  />
+ ));
+ 
+ screen.getByLabelText('Name');
 });
 ```
 
 **2. BDD 스타일로 주체-행위 중심으로 테스트를 조직화**
 
+`주어 -> 결과` 뿐만 아니라 중간에 context를 사용하여 `주어 -> 조건 -> 결과` 형식으로 작성
+
 테스트 대상과 행위를 명확히 드러내어 표현력이 좋아지고, 좀 더 고민할 기회를 제공
 
+- context 사용 방법 (기본적으로 제공 X)
+  - `const context = describe`: describe 사용하여 context 만들기
+  - jest-plugin-context 플러그인 설치 후 사용
+
 ```jsx
-describe('add(주어)', () => {
- it('returns sum of two numbers(결과)', () => {
-    expect(add()).toBe(0);
-    expect(add(1)).toBe(1);
-    expect(add(1, 2)).toBe(3);
-    expect(add(1, 2, 3)).toBe(6);
- });
-});
+import { render, screen, fireEvent } from '@testing-library/react';
 
-// context로 조건문 만들어 다양한 상황 고려하기
-// 위 코드보다 의도를 명확하게 보여줄 수 있음
+import TextField from './TextField';
 
-// context가 제공되지 않아 describe로 만듬
 const context = describe;
 
-describe('add(주어)', () => {
- context('with no argument(조건)', () => {
-  it('returns zero(결과)', () => {
-   expect(add()).toBe(0);
-  });
+describe('TextField', () => {
+ const text = 'Tester';
+ const setText = jest.fn();
+ 
+ beforeEach(() => {
+  setText.mockClear();
+  // 또는 jest.clearAllMocks(); 
  });
+ 
+ function renderTextField() {
+  render((
+   <TextField
+    label="Name"
+    placeholder="Input your name"
+    text={text}
+    setText={setText}
+   />
+  ));
+ }
+ 
+ it('renders an input control', () => {
+  renderTextField();
 
- context('with only one number', () => {
-  it('returns the same number', () => {
-   expect(add(1)).toBe(1);
-  });
+  screen.getByLabelText('Name');
  });
+ 
+ context('when user types text', () => { 
+  it('calls the change handler', () => {
+   renderTextField();
 
- context('with two numbers', () => {
-  it('returns sum of two numbers', () => {
-   expect(add(1, 2)).toBe(3);
-  });
- });
-
- context('with three numbers', () => {
-  it('returns sum of three numbers', () => {
-   expect(add(1, 2, 3)).toBe(6);
+   fireEvent.change(screen.getByLabelText('Name'), {
+    target: {
+     value: 'New Name',
+    },
+   });
+ 
+   expect(setText).toBeCalledWith('New Name');
   });
  });
 });
